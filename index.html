@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<title>Air Fare Calculator</title>
+	</head>
+	<style>
+		.mainDiv
+		{
+			width: 60%;
+			background-color:#ededed;
+			margin: auto;
+			font-size:25px;
+			padding: 10px;
+		}
+		.gross_airportPay,.Basic_of_gross{
+			display: inline;
+		}
+		#txtGrossFare,#txtBasicFare{
+			height: 70px;
+			width: 50%;
+			align:center;
+			font-size:25px;
+		}
+		
+		#btnCalculate{
+		
+			    float: right;
+				height: 37px;
+				width: 81px;
+				margin-top: 15px;
+				padding: 5px;
+		}
+		
+		
+	</style>
+	
+	<body>
+		<div class="mainDiv">	
+			<div class="gross_airportPay">				
+				<input type="text" id="txtGrossFare" placeholder="Enter Gross Fare" />				 
+				<label> Air Port Pay: <span id="txtGrossFareResult"></span> || </label>
+				<label> Total Gross: <span id="txtGrossFareTotal"></span></label>
+			</div>
+			<br/>
+			<hr/>
+			<br/>
+			<div class="Basic_of_gross">				
+				<input type="text" id="txtBasicFare" placeholder="Enter Basic Fare" />				 
+				<label> % of Basic: <span id="txt7_ofBase"></span> </label>				
+			</div>
+			
+			<br/>
+			<hr/>
+			<br/>
+			<div class="Basic_of_gross">				
+							 
+				<label> Air Lines payment: <span id="txtAirLinePayment"></span> </label>				
+			</div>
+			<br/>
+			<hr/>
+			<br/>
+			<div class="Basic_of_gross">							
+				<label> Air Lines payment with Issue: <span id="txtAirLinePaymentWIssue"></span> </label>				
+			</div>
+			<br/>
+			<hr/>
+			<br/>
+			<div class="Basic_of_gross">							
+				<label> Customar payment: <span id="txtCustomarPay"></span> </label>				
+			</div>
+			<br/>
+			<hr/>
+			<br/>
+			<div class="btnCalcult">			
+				<input type="button" id="btnCalculate" value="Display" onclick="CalculateAirPay()"/>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	
+	function CalculateAirPay()
+	{
+		debugger;
+		const grossFareInput = document.getElementById("txtGrossFare");
+		const grossFare = parseFloat(grossFareInput.value);
+		
+		const AirPortPay = (0.3 / 100) * grossFare;
+		const GrossFareResult = document.getElementById("txtGrossFareResult");
+		const GrossFareTotal = document.getElementById("txtGrossFareTotal");
+			  GrossFareResult.textContent =  Math.round(AirPortPay);
+		const GrsTotal = (grossFare + AirPortPay);
+			  GrossFareTotal.textContent  =  Math.round(GrsTotal);
+			  
+		// Basic Air Fare 
+		const BasicFare = document.getElementById("txtBasicFare");
+		const txt7_ofBase = document.getElementById("txt7_ofBase");
+		
+		const Basic7per = (7 / 100) * parseFloat(BasicFare.value);
+			  txt7_ofBase.textContent =  Math.round(Basic7per);
+			  
+		// Air Line Payment 
+		const AirLinePayment = document.getElementById("txtAirLinePayment");		
+		const AirPay = (GrsTotal - parseFloat(Basic7per));
+			  AirLinePayment.textContent =  Math.round(AirPay);
+			  
+		// Air Line Payment WIssue txtAirLinePaymentWIssue
+		const txtAirLinePaymentWIssue = document.getElementById("txtAirLinePaymentWIssue");		
+		const AirLinePaymentWIssue = AirPay + 500;
+			  txtAirLinePaymentWIssue.textContent =  Math.round(AirLinePaymentWIssue);
+			  
+		// Air Line Payment WIssue txtAirLinePaymentWIssue
+		const CustomarPay = document.getElementById("txtCustomarPay");		
+			  CustomarPay.textContent =  Math.round(GrsTotal) +' + 300 ';
+	}
+	
+</script>
